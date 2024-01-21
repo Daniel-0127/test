@@ -1,0 +1,43 @@
+server:
+  port: 8881
+spring:
+  application:
+    name: service-01
+  profiles:
+    active: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/influxdb?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
+  rabbitmq:
+    host: 192.168.177.128 # 你的虚拟机IP
+    port: 5672 # 端口
+    virtual-host: /hyz # 虚拟主机
+    username: hyz # 用户名
+    password: hyz # 密码
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false #关闭驼峰命名转换
+  global-config:
+    db-config:
+      update-strategy: not_null #更新忽略非空字段
+
+# spring-doc 接口文档
+springdoc:
+  api-docs:
+    enabled: true # 是否启用接口文档
+knife4j:
+  enable: true # 是否启用 knife4j 增强,如果只是使用 knife4j 的 UI,则可以关闭
+
+logging:
+  level:
+    com.influx: debug
+  pattern:
+    dateformat: HH:mm:ss:SSS
+
